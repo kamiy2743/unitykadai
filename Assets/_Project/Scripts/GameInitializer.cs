@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameInitializer : MonoBehaviour
 {
+    [SerializeField] private MapObjectConstructor mapObjectConstructor;
+
     private int[] rawData = new int[]
     {
         1,1,1,1,1,1,1,1,0,1,
@@ -22,6 +24,6 @@ public class GameInitializer : MonoBehaviour
     void Start()
     {
         var mapData = new MapData(10, 10, rawData);
-        var routingSolver = new RoutingSolver(mapData);
+        mapObjectConstructor.StartInitial(mapData);
     }
 }
