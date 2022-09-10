@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MapData
 {
-    public readonly int Width;
-    public readonly int Height;
+    public static int Width { get; private set; }
+    public static int Height { get; private set; }
 
     private int[] cellIDs;
 

@@ -9,8 +9,10 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private CinemachineVirtualCamera playerCamera;
     [SerializeField] private float moveSpeed;
-    private Rigidbody rigidbody;
 
+    public Vector2Int Coordinate => new Vector2Int(Mathf.FloorToInt(transform.position.x * MapObjectConstructor.StageScale), MapData.Height - 1 - Mathf.FloorToInt(transform.position.z * MapObjectConstructor.StageScale));
+
+    private Rigidbody rigidbody;
     private InputAction moveAction;
     private CinemachinePOV cinemachinePOV;
 

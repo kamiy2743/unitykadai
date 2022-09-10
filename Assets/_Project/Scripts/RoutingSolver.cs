@@ -14,9 +14,16 @@ public class RoutingSolver
 
     public List<Vector2Int> GetShortestRoute(Vector2Int start, Vector2Int goal)
     {
+        if (start == goal)
+        {
+            return new List<Vector2Int>(0);
+        }
+
         var startCell = new AgentCell(start, 0, null);
         var goalCell = GetGoalCellRecursive(startCell, goal, 0, new List<AgentCell>(), new List<Vector2Int>() { start });
-        return GetRoute(goalCell);
+        var route = GetRoute(goalCell);
+        route.Remove(start);
+        return route;
     }
 
     /// <returns>GoalCell</returns>
@@ -34,8 +41,8 @@ public class RoutingSolver
         foreach (var coordinate in coordinates)
         {
             if (searchedCoordinates.Contains(coordinate)) continue;
-            if (coordinate.x < 0 || coordinate.x >= _mapData.Width) continue;
-            if (coordinate.y < 0 || coordinate.y >= _mapData.Height) continue;
+            if (coordinate.x < 0 || coordinate.x >= MapData.Width) continue;
+            if (coordinate.y < 0 || coordinate.y >= MapData.Height) continue;
             if (_mapData.GetCellID(coordinate.x, coordinate.y) == 1) continue;
 
             var distance = Mathf.Pow(goal.x - coordinate.x, 2) + Mathf.Pow(goal.y - coordinate.y, 2);
@@ -65,6 +72,7 @@ public class RoutingSolver
     {
         var route = new List<Vector2Int>();
         Recursive(goalCell, route);
+        route.Reverse();
         return route;
 
         void Recursive(AgentCell current, List<Vector2Int> route)
