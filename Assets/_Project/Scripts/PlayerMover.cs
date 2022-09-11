@@ -42,6 +42,6 @@ public class PlayerMover : MonoBehaviour
     {
         playerCamera.enabled = false;
         rigidbody.velocity = Vector3.zero;
-        Destroy(this.gameObject);
+        this.enabled = false;
     }
 }

@@ -328,6 +328,51 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4331134913397193222, guid: 5173307df276d214eae1be9022402262, type: 3}
   m_PrefabInstance: {fileID: 78668927}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &231696070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 231696071}
+  - component: {fileID: 231696072}
+  m_Layer: 0
+  m_Name: KeyItemManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &231696071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231696070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &231696072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231696070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee126c11290c4545b19d1e0b470bb1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyItemPrefab: {fileID: 2089345404217922338, guid: 1d7547aeaa82af94caf507bd7c09bedb, type: 3}
 --- !u!1 &251537816
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,7 +1313,7 @@ Transform:
   m_Children:
   - {fileID: 35834754}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1283685559
 GameObject:
@@ -1893,6 +1938,7 @@ MonoBehaviour:
   playerMover: {fileID: 1963461251}
   enemyMoverPrefab: {fileID: 6361625891275053889, guid: 11dd58dca31eb944b86214026f942ac8, type: 3}
   mapViewer: {fileID: 1283685560}
+  keyItemManager: {fileID: 231696072}
 --- !u!1 &1963461248
 GameObject:
   m_ObjectHideFlags: 0

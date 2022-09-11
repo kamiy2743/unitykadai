@@ -11,6 +11,7 @@ public class MapData
 
     public Vector2Int PlayerStartCoordinate { get; private set; }
     public List<Vector2Int> EnemyStartCoordinates { get; private set; } = new List<Vector2Int>();
+    public List<Vector2Int> KeyItemCoordinates { get; private set; } = new List<Vector2Int>();
 
     public MapData()
     {
@@ -32,6 +33,11 @@ public class MapData
                 if (id == 3)
                 {
                     EnemyStartCoordinates.Add(new Vector2Int(x, y));
+                }
+
+                if (id == 4)
+                {
+                    KeyItemCoordinates.Add(new Vector2Int(x, y));
                 }
             }
         }
