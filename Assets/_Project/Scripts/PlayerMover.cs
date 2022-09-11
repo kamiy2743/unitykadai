@@ -8,6 +8,7 @@ public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private CinemachineVirtualCamera playerCamera;
+    [SerializeField] private EnemyDetector enemyDetector;
     [SerializeField] private float moveSpeed;
 
     public Vector2Int Coordinate => new Vector2Int(Mathf.FloorToInt(transform.position.x * MapObjectConstructor.StageScale), MapData.Height - 1 - Mathf.FloorToInt(transform.position.z * MapObjectConstructor.StageScale));
@@ -21,6 +22,8 @@ public class PlayerMover : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         moveAction = playerInput.currentActionMap["Move"];
         cinemachinePOV = playerCamera.GetCinemachineComponent(CinemachineCore.Stage.Aim).GetComponent<CinemachinePOV>();
+
+        enemyDetector.OnDetect.AddListener(GameOver);
     }
 
     // Update is called once per frame
@@ -31,5 +34,12 @@ public class PlayerMover : MonoBehaviour
         var moveVector = horizontalRotation * new Vector3(horizontalMoveVector.x, -9.8f, horizontalMoveVector.y);
 
         rigidbody.velocity = moveVector;
+    }
+
+    private void GameOver()
+    {
+        playerCamera.enabled = false;
+        rigidbody.velocity = Vector3.zero;
+        this.enabled = false;
     }
 }
