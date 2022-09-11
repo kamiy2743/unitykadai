@@ -29,9 +29,9 @@ public class GameInitializer : MonoBehaviour
             enemyMovers.Add(enemyMover);
         }
 
-        mapViewer.StartInitial(mapData, playerMover, enemyMovers);
-
         keyItemManager.StartInitial(mapData.KeyItemCoordinates.Select(c => ToPosition(c)).ToList());
+
+        mapViewer.StartInitial(mapData, playerMover, enemyMovers, keyItemManager.KeyItems);
     }
 
     private Vector3 ToPosition(Vector2Int coordinate)

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MapData
 {
-    public const int Width = 30;
-    public const int Height = 30;
+    public const int Width = 20;
+    public const int Height = 20;
 
     private int[] cellIDs = new int[Width * Height];
 

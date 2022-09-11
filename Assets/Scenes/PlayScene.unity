@@ -372,7 +372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee126c11290c4545b19d1e0b470bb1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyItemPrefab: {fileID: 2089345404217922338, guid: 1d7547aeaa82af94caf507bd7c09bedb, type: 3}
+  keyItemPrefab: {fileID: -2185054509344786289, guid: 1d7547aeaa82af94caf507bd7c09bedb, type: 3}
+  KeyItems: []
 --- !u!1 &251537816
 GameObject:
   m_ObjectHideFlags: 0
@@ -1348,6 +1349,7 @@ MonoBehaviour:
   entityParent: {fileID: 497770833}
   player: {fileID: 78668928}
   enemyPrefab: {fileID: 4331134913397193222, guid: 59206d1f866dbd74aaa8808dd48aae5c, type: 3}
+  keyItemPrefab: {fileID: 4331134913397193222, guid: adaf0818b1c89b74a945d156a5f74dd0, type: 3}
   pathParent: {fileID: 1561292863}
   pathPrefab: {fileID: 4331134913397193222, guid: 8937e10b9579f08418fca80d1e2656c3, type: 3}
 --- !u!4 &1283685561

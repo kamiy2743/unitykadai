@@ -20,7 +20,6 @@ public class EnemyMover : MonoBehaviour
 
     void Update()
     {
-        return;
         if (elapsed > 1 / moveSpeed)
         {
             elapsed = 0;

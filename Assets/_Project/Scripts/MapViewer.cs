@@ -8,23 +8,35 @@ public class MapViewer : MonoBehaviour
     [SerializeField] private Transform entityParent;
     [SerializeField] private Transform player;
     [SerializeField] private Transform enemyPrefab;
+    [SerializeField] private Transform keyItemPrefab;
     [SerializeField] private Transform pathParent;
     [SerializeField] private Transform pathPrefab;
 
     private PlayerMover _playerMover;
-    private List<EnemyMover> _enemyMovers;
 
+    private List<EnemyMover> _enemyMovers;
     private List<Transform> enemies = new List<Transform>();
 
-    public void StartInitial(MapData mapData, PlayerMover playerMover, List<EnemyMover> enemyMovers)
+    private List<GameObject> _keyItems;
+    private List<GameObject> keyItemViews = new List<GameObject>();
+
+    public void StartInitial(MapData mapData, PlayerMover playerMover, List<EnemyMover> enemyMovers, List<GameObject> keyItems)
     {
         _playerMover = playerMover;
         _enemyMovers = enemyMovers;
+        _keyItems = keyItems;
 
         foreach (var enemyMover in _enemyMovers)
         {
             var enemy = Instantiate(enemyPrefab, entityParent);
             enemies.Add(enemy);
+        }
+
+        foreach (var keyItem in keyItems)
+        {
+            var keyItemView = Instantiate(keyItemPrefab, entityParent);
+            keyItemView.localPosition = ToMapPos(keyItem.transform.position);
+            keyItemViews.Add(keyItemView.gameObject);
         }
 
         for (int x = 0; x < MapData.Width; x++)
@@ -50,6 +62,11 @@ public class MapViewer : MonoBehaviour
         {
             var enemyPos = ToMapPos(_enemyMovers[i].transform.position);
             enemies[i].localPosition = enemyPos;
+        }
+
+        for (int i = 0; i < _keyItems.Count; i++)
+        {
+            keyItemViews[i].SetActive(_keyItems[i].activeSelf);
         }
 
         entityParent.localPosition = -playerPos;
