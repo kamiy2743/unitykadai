@@ -7,6 +7,7 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private MapObjectConstructor mapObjectConstructor;
     [SerializeField] private PlayerMover playerMover;
     [SerializeField] private EnemyMover enemyMover;
+    [SerializeField] private MapViewer mapViewer;
 
     private int[] rawData = new int[]
     {
@@ -30,5 +31,7 @@ public class GameInitializer : MonoBehaviour
 
         var routingSolver = new RoutingSolver(mapData);
         enemyMover.StartInitial(playerMover, routingSolver);
+
+        mapViewer.StartInitial(mapData, playerMover, enemyMover);
     }
 }

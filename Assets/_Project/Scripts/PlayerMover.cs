@@ -11,11 +11,11 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private EnemyDetector enemyDetector;
     [SerializeField] private float moveSpeed;
 
-    public Vector2Int Coordinate => new Vector2Int(Mathf.FloorToInt(transform.position.x * MapObjectConstructor.StageScale), MapData.Height - 1 - Mathf.FloorToInt(transform.position.z * MapObjectConstructor.StageScale));
-
     private Rigidbody rigidbody;
     private InputAction moveAction;
     private CinemachinePOV cinemachinePOV;
+
+    public float RotateY => cinemachinePOV.m_HorizontalAxis.Value;
 
     void Start()
     {
@@ -30,7 +30,7 @@ public class PlayerMover : MonoBehaviour
     void Update()
     {
         var horizontalMoveVector = moveAction.ReadValue<Vector2>().normalized * moveSpeed;
-        var horizontalRotation = Quaternion.Euler(0, cinemachinePOV.m_HorizontalAxis.Value, 0);
+        var horizontalRotation = Quaternion.Euler(0, RotateY, 0);
         var moveVector = horizontalRotation * new Vector3(horizontalMoveVector.x, -9.8f, horizontalMoveVector.y);
 
         rigidbody.velocity = moveVector;

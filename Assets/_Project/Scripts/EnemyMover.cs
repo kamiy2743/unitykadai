@@ -22,7 +22,8 @@ public class EnemyMover : MonoBehaviour
         {
             elapsed = 0;
             var start = new Vector2Int(Mathf.FloorToInt(transform.position.x * MapObjectConstructor.StageScale), MapData.Height - 1 - Mathf.FloorToInt(transform.position.z * MapObjectConstructor.StageScale));
-            var route = _routingSolver.GetShortestRoute(start, _playerMover.Coordinate);
+            var goal = new Vector2Int(Mathf.FloorToInt(_playerMover.transform.position.x * MapObjectConstructor.StageScale), MapData.Height - 1 - Mathf.FloorToInt(_playerMover.transform.position.z * MapObjectConstructor.StageScale));
+            var route = _routingSolver.GetShortestRoute(start, goal);
             if (route.Count == 0) return;
             var nextPosition = new Vector2(route[0].x, MapData.Height - 1 - route[0].y) + Vector2.one * 0.5f * MapObjectConstructor.StageScale;
             transform.DOKill();
