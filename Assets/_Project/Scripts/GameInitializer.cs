@@ -25,8 +25,7 @@ public class GameInitializer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // var mapData = new MapData(10, 10, rawData);
-        var mapData = new MapData(20, 20, new int[400]);
+        var mapData = new MapData(10, 10, rawData);
         mapObjectConstructor.StartInitial(mapData);
 
         var routingSolver = new RoutingSolver(mapData);
