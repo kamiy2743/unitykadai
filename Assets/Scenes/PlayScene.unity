@@ -1296,6 +1296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1026259677}
+  - component: {fileID: 1026259678}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -1316,8 +1317,22 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1026259678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026259676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaccb935ddcdd404780dbd1761c01d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 1026259677}
+  wallPrefab: {fileID: 1372819513374901985, guid: 5716a15e75e81414a8f31e2d9f332136, type: 3}
 --- !u!1 &1227368802
 GameObject:
   m_ObjectHideFlags: 0
@@ -2055,7 +2070,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1865560016}
   - component: {fileID: 1865560017}
-  - component: {fileID: 1865560018}
   m_Layer: 0
   m_Name: GameInitializer
   m_TagString: Untagged
@@ -2076,7 +2090,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1865560017
 MonoBehaviour:
@@ -2090,23 +2104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d053d78062aa9e24188fec679f5fcce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapObjectConstructor: {fileID: 1865560018}
+  mapObjectConstructor: {fileID: 1026259678}
   playerMover: {fileID: 1963461251}
   enemyMover: {fileID: 544346066}
   mapViewer: {fileID: 1283685560}
---- !u!114 &1865560018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1865560015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaccb935ddcdd404780dbd1761c01d5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 1026259677}
 --- !u!1 &1963461248
 GameObject:
   m_ObjectHideFlags: 0

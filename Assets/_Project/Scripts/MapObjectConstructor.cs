@@ -5,6 +5,7 @@ using UnityEngine;
 public class MapObjectConstructor : MonoBehaviour
 {
     [SerializeField] private Transform parent;
+    [SerializeField] private GameObject wallPrefab;
 
     public const float StageScale = 2;
 
@@ -21,7 +22,7 @@ public class MapObjectConstructor : MonoBehaviour
             {
                 if (mapData.GetCellID(x, y) == 1)
                 {
-                    var wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    var wall = Instantiate(wallPrefab);
                     wall.transform.SetParent(parent);
                     wall.transform.position = new Vector3(x, 0, MapData.Height - 1 - y) * StageScale + Vector3.one * 0.5f * StageScale;
                     wall.transform.localScale = Vector3.one * StageScale;
