@@ -51,6 +51,6 @@ public class MapViewer : MonoBehaviour
 
     private Vector2 ToMapPos(Vector3 position)
     {
-        return new Vector2((position.x - 0.5f) / MapObjectConstructor.StageScale, (position.z - 0.5f) / MapObjectConstructor.StageScale);
+        return new Vector2(position.x / MapObjectConstructor.StageScale - 0.5f, position.z / MapObjectConstructor.StageScale - 0.5f);
     }
 }
