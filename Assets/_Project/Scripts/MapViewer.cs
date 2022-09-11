@@ -37,8 +37,8 @@ public class MapViewer : MonoBehaviour
 
     void Update()
     {
-        var playerPos = new Vector2(_playerMover.transform.position.x - 0.5f * MapObjectConstructor.StageScale, _playerMover.transform.position.z - 0.5f * MapObjectConstructor.StageScale);
-        var enemyPos = new Vector2(_enemyMover.transform.position.x - 0.5f * MapObjectConstructor.StageScale, _enemyMover.transform.position.z - 0.5f * MapObjectConstructor.StageScale);
+        var playerPos = ToMapPos(_playerMover.transform.position);
+        var enemyPos = ToMapPos(_enemyMover.transform.position);
 
         player.localPosition = playerPos;
         enemy.localPosition = enemyPos;
@@ -47,5 +47,10 @@ public class MapViewer : MonoBehaviour
         pathParent.localPosition = -playerPos;
 
         parent.rotation = Quaternion.Euler(0, 0, _playerMover.RotateY);
+    }
+
+    private Vector2 ToMapPos(Vector3 position)
+    {
+        return new Vector2((position.x - 0.5f) / MapObjectConstructor.StageScale, (position.z - 0.5f) / MapObjectConstructor.StageScale);
     }
 }

@@ -6,7 +6,7 @@ public class MapObjectConstructor : MonoBehaviour
 {
     [SerializeField] private Transform parent;
 
-    public const float StageScale = 1;
+    public const float StageScale = 2;
 
     public void StartInitial(MapData mapData)
     {
