@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour
 {
+    [SerializeField] private PlayerMover playerMover;
     [SerializeField] private EnemyDetector enemyDetector;
     [SerializeField] private GameObject ui;
     [SerializeField] private Button continueButton;
@@ -21,6 +22,7 @@ public class GameOverManager : MonoBehaviour
 
     private void GameOver()
     {
+        if (!playerMover.enabled) return;
         ui.SetActive(true);
     }
 

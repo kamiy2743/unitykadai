@@ -10,6 +10,7 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private EnemyMover enemyMoverPrefab;
     [SerializeField] private MapViewer mapViewer;
     [SerializeField] private KeyItemManager keyItemManager;
+    [SerializeField] private GameClearManager gameClearManager;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,9 @@ public class GameInitializer : MonoBehaviour
         }
 
         keyItemManager.StartInitial(mapData.KeyItemCoordinates.Select(c => ToPosition(c)).ToList());
+
+        gameClearManager.StartInitial();
+        keyItemManager.OnAllItemCollected.AddListener(gameClearManager.GameClear);
 
         mapViewer.StartInitial(mapData, playerMover, enemyMovers, keyItemManager.KeyItems);
     }

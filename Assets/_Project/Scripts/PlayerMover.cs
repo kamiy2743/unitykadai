@@ -23,7 +23,7 @@ public class PlayerMover : MonoBehaviour
         moveAction = playerInput.currentActionMap["Move"];
         cinemachinePOV = playerCamera.GetCinemachineComponent(CinemachineCore.Stage.Aim).GetComponent<CinemachinePOV>();
 
-        enemyDetector.OnDetect.AddListener(GameOver);
+        enemyDetector.OnDetect.AddListener(Dispose);
 
         transform.position = startPosition;
     }
@@ -38,7 +38,7 @@ public class PlayerMover : MonoBehaviour
         rigidbody.velocity = moveVector;
     }
 
-    private void GameOver()
+    public void Dispose()
     {
         playerCamera.enabled = false;
         rigidbody.velocity = Vector3.zero;

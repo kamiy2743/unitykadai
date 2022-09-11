@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class KeyItemManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class KeyItemManager : MonoBehaviour
 
     private int maxItemCount;
     private int keyItemCount;
+
+    public UnityEvent OnAllItemCollected = new UnityEvent();
 
     public void StartInitial(List<Vector3> startPositions)
     {
@@ -36,7 +39,7 @@ public class KeyItemManager : MonoBehaviour
 
         if (keyItemCount <= 0)
         {
-            Debug.Log("clear");
+            OnAllItemCollected.Invoke();
         }
     }
 
