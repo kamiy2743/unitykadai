@@ -24,6 +24,9 @@ public class GameOverManager : MonoBehaviour
     {
         if (!playerMover.enabled) return;
         ui.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void Continue()

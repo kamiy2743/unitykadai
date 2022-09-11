@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using DG.Tweening;
 
 public class KeyItemManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class KeyItemManager : MonoBehaviour
             keyItemCount += 1;
             var keyItem = Instantiate(keyItemPrefab, transform);
             keyItem.transform.position = position;
+            keyItem.transform.DORotate(new Vector3(45, 360, 45), 5, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1);
             keyItem.OnDetect.AddListener(() => OnGet(keyItem.gameObject));
             KeyItems.Add(keyItem.gameObject);
         }

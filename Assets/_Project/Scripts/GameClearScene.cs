@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using Cysharp.Threading.Tasks;
 
 public class GameClearScene : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class GameClearScene : MonoBehaviour
     [SerializeField] private CanvasGroup fadeInUI;
     [SerializeField] private float fadeInDuration;
 
-    void Start()
+    async void Start()
     {
         titleButton.onClick.AddListener(() =>
         {
@@ -23,7 +24,10 @@ public class GameClearScene : MonoBehaviour
         });
 
         fadeInUI.alpha = 1;
-        fadeInUI.DOFade(0, fadeInDuration);
+        await fadeInUI.DOFade(0, fadeInDuration);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     void Update()

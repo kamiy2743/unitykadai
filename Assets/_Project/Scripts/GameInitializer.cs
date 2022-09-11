@@ -15,6 +15,9 @@ public class GameInitializer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         var mapData = new MapData();
         mapObjectConstructor.StartInitial(mapData);
 
