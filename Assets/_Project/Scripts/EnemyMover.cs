@@ -10,10 +10,12 @@ public class EnemyMover : MonoBehaviour
     private RoutingSolver _routingSolver;
     private float elapsed;
 
-    public void StartInitial(PlayerMover playerMover, RoutingSolver routingSolver)
+    public void StartInitial(Vector3 startPosition, PlayerMover playerMover, RoutingSolver routingSolver)
     {
         _playerMover = playerMover;
         _routingSolver = routingSolver;
+
+        transform.position = startPosition;
     }
 
     void Update()

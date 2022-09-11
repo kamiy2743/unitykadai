@@ -17,13 +17,15 @@ public class PlayerMover : MonoBehaviour
 
     public float RotateY => cinemachinePOV.m_HorizontalAxis.Value;
 
-    void Start()
+    public void StartInitial(Vector3 startPosition)
     {
         rigidbody = GetComponent<Rigidbody>();
         moveAction = playerInput.currentActionMap["Move"];
         cinemachinePOV = playerCamera.GetCinemachineComponent(CinemachineCore.Stage.Aim).GetComponent<CinemachinePOV>();
 
         enemyDetector.OnDetect.AddListener(GameOver);
+
+        transform.position = startPosition;
     }
 
     // Update is called once per frame
@@ -40,6 +42,6 @@ public class PlayerMover : MonoBehaviour
     {
         playerCamera.enabled = false;
         rigidbody.velocity = Vector3.zero;
-        this.enabled = false;
+        Destroy(this.gameObject);
     }
 }

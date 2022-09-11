@@ -4,23 +4,35 @@ using UnityEngine;
 
 public class MapData
 {
-    public static int Width { get; private set; }
-    public static int Height { get; private set; }
+    public const int Width = 30;
+    public const int Height = 30;
 
-    private int[] cellIDs;
+    private int[] cellIDs = new int[Width * Height];
 
-    public MapData(int width, int height, int[] rawData)
+    public Vector2Int PlayerStartCoordinate { get; private set; }
+    public List<Vector2Int> EnemyStartCoordinates { get; private set; } = new List<Vector2Int>();
+
+    public MapData()
     {
-        Width = width;
-        Height = height;
-
-        cellIDs = new int[width * height];
-        for (int x = 0; x < width; x++)
+        var csv = Resources.Load<TextAsset>("MapData").text;
+        var lines = csv.Split(System.Environment.NewLine);
+        for (int y = 0; y < Height; y++)
         {
-            for (int y = 0; y < height; y++)
+            var ids = lines[y].Split(",");
+            for (int x = 0; x < Width; x++)
             {
-                var cellID = rawData[ToIndex(x, y)];
-                cellIDs[ToIndex(x, y)] = cellID;
+                var id = int.Parse(ids[x]);
+                cellIDs[ToIndex(x, y)] = int.Parse(ids[x]);
+
+                if (id == 2)
+                {
+                    PlayerStartCoordinate = new Vector2Int(x, y);
+                }
+
+                if (id == 3)
+                {
+                    EnemyStartCoordinates.Add(new Vector2Int(x, y));
+                }
             }
         }
     }

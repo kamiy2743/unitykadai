@@ -5,28 +5,34 @@ using UnityEngine;
 public class MapViewer : MonoBehaviour
 {
     [SerializeField] private Transform parent;
-    [SerializeField] private float size;
-    [SerializeField] private float scale;
     [SerializeField] private Transform entityParent;
     [SerializeField] private Transform player;
-    [SerializeField] private Transform enemy;
+    [SerializeField] private Transform enemyPrefab;
     [SerializeField] private Transform pathParent;
     [SerializeField] private Transform pathPrefab;
 
     private PlayerMover _playerMover;
-    private EnemyMover _enemyMover;
+    private List<EnemyMover> _enemyMovers;
 
-    public void StartInitial(MapData mapData, PlayerMover playerMover, EnemyMover enemyMover)
+    private List<Transform> enemies = new List<Transform>();
+
+    public void StartInitial(MapData mapData, PlayerMover playerMover, List<EnemyMover> enemyMovers)
     {
         _playerMover = playerMover;
-        _enemyMover = enemyMover;
+        _enemyMovers = enemyMovers;
+
+        foreach (var enemyMover in _enemyMovers)
+        {
+            var enemy = Instantiate(enemyPrefab, entityParent);
+            enemies.Add(enemy);
+        }
 
         for (int x = 0; x < MapData.Width; x++)
         {
             for (int y = 0; y < MapData.Height; y++)
             {
                 var id = mapData.GetCellID(x, MapData.Height - 1 - y);
-                if (id == 0)
+                if (id != 1)
                 {
                     var path = Instantiate(pathPrefab, pathParent);
                     path.localPosition = new Vector2(x, y);
@@ -38,10 +44,13 @@ public class MapViewer : MonoBehaviour
     void Update()
     {
         var playerPos = ToMapPos(_playerMover.transform.position);
-        var enemyPos = ToMapPos(_enemyMover.transform.position);
-
         player.localPosition = playerPos;
-        enemy.localPosition = enemyPos;
+
+        for (int i = 0; i < _enemyMovers.Count; i++)
+        {
+            var enemyPos = ToMapPos(_enemyMovers[i].transform.position);
+            enemies[i].localPosition = enemyPos;
+        }
 
         entityParent.localPosition = -playerPos;
         pathParent.localPosition = -playerPos;
